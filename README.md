@@ -1,4 +1,4 @@
-# FlowView -- Pipeline Monitoring System
+# FlowView -- A Data Pipeline Monitoring System
 
 ## Overview
 FlowView is a monitoring system that tracks data flow from data generation to HDFS to Hive.
@@ -6,11 +6,11 @@ FlowView is a monitoring system that tracks data flow from data generation to HD
 ## Usage
 There are three main stages in FlowView operation: setup, load or cleanup.
 
-'''
+```
 % python runFlowView.py --config=<ConfigFileName> --stage=setup
 % python runFlowView.py --config=<ConfigFileName> --stage=load
 % python runFlowView.py --config=<ConfigFileName> --stage=cleanup
-'''
+```
 
 The setup phase sets up local file system, HDFS, and Hive table to prepare for loading job.
 
