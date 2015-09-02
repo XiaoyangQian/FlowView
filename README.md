@@ -5,6 +5,7 @@ FlowView is a monitoring system that tracks data flow from data generation to HD
 
 ## Usage
 There are three main stages in FlowView operation: setup, load or cleanup.
+
 '''
 % python runFlowView.py --config=<ConfigFileName> --stage=setup
 % python runFlowView.py --config=<ConfigFileName> --stage=load
@@ -26,6 +27,8 @@ With each dataset onboarded, two hive tables are generated:
 	<li>Hive_timestamp, containing timestamps from data being parsed out from JSON format and written into Hive warehouse</li>
 </ul>
 
+Note that both Hive tables are partitioned by Year, Month, Day, Hour of the message timestamp (i.e. HDFS_timestamp is partitioned by message creating timestamp, and Hive_timestamp is partitioned by hive timestamp) to facilitate the calculation of data loss, overall querying speed, and maintanence convenience of the tables.
+
 Additionally, mySQL database is used to keep track of FlowView metadata information. Two tables are maintained and used for all datasets:
 <ul>
 	<li>flowview_load_metadata, to keep track of last processed HDFS and Hive file</li>
@@ -34,4 +37,7 @@ Additionally, mySQL database is used to keep track of FlowView metadata informat
 
 ## Visualization / Reporting
 FlowView is intended to be the middle layer between the data transmission pipeline and visualization tools such as Grafana and Kibana. The users are welcomed to do further downstream processing through the Hive tables, generate the metrics of their concern, and ingest the output into the reporting tools of their choice. 
+
+## Notes
+Sample config file is provided under the config folder. Config details are ommitted to protect individual and orgnanization privacy.
 
